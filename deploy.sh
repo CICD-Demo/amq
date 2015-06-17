@@ -39,8 +39,6 @@ items:
             value: admin
           - name: AMQ_TRANSPORTS
             value: openwire
-          - name: AMQ_QUEUES
-            value: bookings
           - name: ACTIVEMQ_OPTS
             value: -Dhawtio.authenticationEnabled=false
 
