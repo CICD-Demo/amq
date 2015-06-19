@@ -12,23 +12,23 @@ items:
 - kind: ReplicationController
   apiVersion: v1beta3
   metadata:
-    name: amq
+    name: broker
     labels:
-      service: amq
+      service: broker
       function: backend
   spec:
     replicas: 1
     selector:
-      service: amq
+      service: broker
       function: backend
     template:
       metadata:
         labels:
-          service: amq
+          service: broker
           function: backend
       spec:
         containers:
-        - name: amq
+        - name: broker
           image: docker.io/cicddemo/amq:latest
           imagePullPolicy: IfNotPresent
           ports:
@@ -42,20 +42,22 @@ items:
             value: admin
           - name: AMQ_TRANSPORTS
             value: openwire
+          - name: AMQ_QUEUES
+            value: bookings
           - name: ACTIVEMQ_OPTS
             value: -Dhawtio.authenticationEnabled=false
 
 - kind: Service
   apiVersion: v1beta3
   metadata:
-    name: amq
+    name: broker
     labels:
-      service: amq
+      service: broker
       function: backend
   spec:
     ports:
     - port: 61616
     selector:
-      service: amq
+      service: broker
       function: backend
 EOF
