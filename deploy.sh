@@ -14,15 +14,18 @@ items:
   metadata:
     name: amq
     labels:
-      component: amq
+      service: amq
+      function: backend
   spec:
     replicas: 1
     selector:
-      component: amq
+      service: amq
+      function: backend
     template:
       metadata:
         labels:
-          component: amq
+          service: amq
+          function: backend
       spec:
         containers:
         - name: amq
@@ -47,10 +50,12 @@ items:
   metadata:
     name: amq
     labels:
-      component: amq
+      service: amq
+      function: backend
   spec:
     ports:
     - port: 61616
     selector:
-      component: amq
+      service: amq
+      function: backend
 EOF
