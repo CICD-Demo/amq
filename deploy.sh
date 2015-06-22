@@ -12,23 +12,23 @@ items:
 - kind: ReplicationController
   apiVersion: v1beta3
   metadata:
-    name: broker
+    name: amqbroker
     labels:
-      service: broker
+      service: amqbroker
       function: backend
   spec:
     replicas: 1
     selector:
-      service: broker
+      service: amqbroker
       function: backend
     template:
       metadata:
         labels:
-          service: broker
+          service: amqbroker
           function: backend
       spec:
         containers:
-        - name: broker
+        - name: amqbroker
           image: docker.io/cicddemo/amq:latest
           imagePullPolicy: IfNotPresent
           ports:
@@ -50,14 +50,14 @@ items:
 - kind: Service
   apiVersion: v1beta3
   metadata:
-    name: broker
+    name: amqbroker
     labels:
-      service: broker
+      service: amqbroker
       function: backend
   spec:
     ports:
     - port: 61616
     selector:
-      service: broker
+      service: amqbroker
       function: backend
 EOF
