@@ -5,12 +5,12 @@ cd $(dirname $0)
 . utils
 . ../../environment
 
-osc create -f - <<EOF
+oc create -f - <<EOF
 kind: List
-apiVersion: v1beta3
+apiVersion: v1
 items:
 - kind: ReplicationController
-  apiVersion: v1beta3
+  apiVersion: v1
   metadata:
     name: amqbroker
     labels:
@@ -48,7 +48,7 @@ items:
             value: -Dhawtio.authenticationEnabled=false
 
 - kind: Service
-  apiVersion: v1beta3
+  apiVersion: v1
   metadata:
     name: amqbroker
     labels:
